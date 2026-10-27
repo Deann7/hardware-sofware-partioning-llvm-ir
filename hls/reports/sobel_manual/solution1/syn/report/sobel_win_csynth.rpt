@@ -1,0 +1,163 @@
+
+
+================================================================
+== Vitis HLS Report for 'sobel_win'
+================================================================
+* Date:           Sun Oct 25 22:33:28 2026
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        sobel_manual
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.088 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  20.000 ns|  20.000 ns|    1|    1|      yes|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    219|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        0|    -|     128|    200|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|      -|    -|
+|Register         |        -|    -|      71|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     199|    419|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------+---------------+---------+----+-----+-----+-----+
+    |     Instance    |     Module    | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-----------------+---------------+---------+----+-----+-----+-----+
+    |control_s_axi_U  |control_s_axi  |        0|   0|  128|  200|    0|
+    +-----------------+---------------+---------+----+-----+-----+-----+
+    |Total            |               |        0|   0|  128|  200|    0|
+    +-----------------+---------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln14_fu_272_p2    |         +|   0|  0|  11|          11|          11|
+    |add_ln15_1_fu_288_p2  |         +|   0|  0|  11|          11|          11|
+    |add_ln15_fu_225_p2    |         +|   0|  0|  14|           9|           9|
+    |add_ln20_fu_354_p2    |         +|   0|  0|  12|          11|          11|
+    |gx_fu_278_p2          |         +|   0|  0|  11|          11|          11|
+    |gy_fu_294_p2          |         +|   0|  0|  11|          11|          11|
+    |magnitude_fu_358_p2   |         +|   0|  0|  12|          12|          12|
+    |gx_3_fu_199_p2        |         -|   0|  0|  14|           9|           9|
+    |gx_4_fu_209_p2        |         -|   0|  0|  13|          10|          10|
+    |gy_2_fu_235_p2        |         -|   0|  0|  13|          10|          10|
+    |sub_ln18_fu_312_p2    |         -|   0|  0|  12|           1|          11|
+    |sub_ln19_fu_334_p2    |         -|   0|  0|  12|           1|          11|
+    |tmp3_fu_219_p2        |         -|   0|  0|  14|           9|           9|
+    |tmp_fu_193_p2         |         -|   0|  0|  14|           9|           9|
+    |icmp_ln21_fu_374_p2   |      icmp|   0|  0|  13|           4|           1|
+    |abs_gx_fu_318_p3      |    select|   0|  0|  11|           1|          11|
+    |abs_gy_fu_340_p3      |    select|   0|  0|  11|           1|          11|
+    |result                |    select|   0|  0|   8|           1|           2|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0| 219|         133|         172|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |abs_gx_reg_418           |  11|   0|   11|          0|
+    |abs_gy_reg_424           |  11|   0|   11|          0|
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2  |   1|   0|    1|          0|
+    |gx_4_reg_403             |  10|   0|   10|          0|
+    |gy_2_reg_413             |  10|   0|   10|          0|
+    |tmp3_reg_408             |   9|   0|    9|          0|
+    |tmp_6_reg_393            |   8|   0|    8|          0|
+    |tmp_reg_398              |   9|   0|    9|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  71|   0|   71|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------------+-----+-----+------------+--------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|       control|       pointer|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|       control|       pointer|
+|s_axi_control_AWADDR   |   in|    6|       s_axi|       control|       pointer|
+|s_axi_control_WVALID   |   in|    1|       s_axi|       control|       pointer|
+|s_axi_control_WREADY   |  out|    1|       s_axi|       control|       pointer|
+|s_axi_control_WDATA    |   in|   32|       s_axi|       control|       pointer|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|       control|       pointer|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|       control|       pointer|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|       control|       pointer|
+|s_axi_control_ARADDR   |   in|    6|       s_axi|       control|       pointer|
+|s_axi_control_RVALID   |  out|    1|       s_axi|       control|       pointer|
+|s_axi_control_RREADY   |   in|    1|       s_axi|       control|       pointer|
+|s_axi_control_RDATA    |  out|   32|       s_axi|       control|       pointer|
+|s_axi_control_RRESP    |  out|    2|       s_axi|       control|       pointer|
+|s_axi_control_BVALID   |  out|    1|       s_axi|       control|       pointer|
+|s_axi_control_BREADY   |   in|    1|       s_axi|       control|       pointer|
+|s_axi_control_BRESP    |  out|    2|       s_axi|       control|       pointer|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|     sobel_win|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|     sobel_win|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|     sobel_win|  return value|
++-----------------------+-----+-----+------------+--------------+--------------+
+

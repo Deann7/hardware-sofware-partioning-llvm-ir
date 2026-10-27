@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(HwSwPartition CXX)
+find_package(LLVM 18 REQUIRED CONFIG)
+set(CMAKE_CXX_STANDARD 17)
+include_directories(${LLVM_INCLUDE_DIRS})
+add_definitions(${LLVM_DEFINITIONS})
+add_library(HwSwPartition MODULE HwSwPartition.cpp)
+set_target_properties(HwSwPartition PROPERTIES PREFIX "" COMPILE_FLAGS "-fno-rtti")

@@ -1,0 +1,238 @@
+
+
+================================================================
+== Synthesis Summary Report of 'conv5_hw_gen'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 09:15:02 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        conv5_gen
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+--------+-----------+----------+-----+
+    |     Modules    | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |        |           |          |     |
+    |     & Loops    | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM |   DSP  |     FF    |    LUT   | URAM|
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+--------+-----------+----------+-----+
+    |+ conv5_hw_gen  |     -|  0.39|        6|  60.000|         -|        1|     -|       yes|     -|  5 (2%)|  731 (~0%)|  901 (1%)|    -|
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+--------+-----------+----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 8             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register    | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL        | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER        | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER      | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR      | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | px_m2_m2    | 0x10   | 32    | W      | Data signal of px_m2_m2          |                                                                      |
+| s_axi_control | px_m2_m1    | 0x18   | 32    | W      | Data signal of px_m2_m1          |                                                                      |
+| s_axi_control | px_m2_p0    | 0x20   | 32    | W      | Data signal of px_m2_p0          |                                                                      |
+| s_axi_control | px_m2_p1    | 0x28   | 32    | W      | Data signal of px_m2_p1          |                                                                      |
+| s_axi_control | px_m2_p2    | 0x30   | 32    | W      | Data signal of px_m2_p2          |                                                                      |
+| s_axi_control | px_m1_m2    | 0x38   | 32    | W      | Data signal of px_m1_m2          |                                                                      |
+| s_axi_control | px_m1_m1    | 0x40   | 32    | W      | Data signal of px_m1_m1          |                                                                      |
+| s_axi_control | px_m1_p0    | 0x48   | 32    | W      | Data signal of px_m1_p0          |                                                                      |
+| s_axi_control | px_m1_p1    | 0x50   | 32    | W      | Data signal of px_m1_p1          |                                                                      |
+| s_axi_control | px_m1_p2    | 0x58   | 32    | W      | Data signal of px_m1_p2          |                                                                      |
+| s_axi_control | px_p0_m2    | 0x60   | 32    | W      | Data signal of px_p0_m2          |                                                                      |
+| s_axi_control | px_p0_m1    | 0x68   | 32    | W      | Data signal of px_p0_m1          |                                                                      |
+| s_axi_control | px_p0_p0    | 0x70   | 32    | W      | Data signal of px_p0_p0          |                                                                      |
+| s_axi_control | px_p0_p1    | 0x78   | 32    | W      | Data signal of px_p0_p1          |                                                                      |
+| s_axi_control | px_p0_p2    | 0x80   | 32    | W      | Data signal of px_p0_p2          |                                                                      |
+| s_axi_control | px_p1_m2    | 0x88   | 32    | W      | Data signal of px_p1_m2          |                                                                      |
+| s_axi_control | px_p1_m1    | 0x90   | 32    | W      | Data signal of px_p1_m1          |                                                                      |
+| s_axi_control | px_p1_p0    | 0x98   | 32    | W      | Data signal of px_p1_p0          |                                                                      |
+| s_axi_control | px_p1_p1    | 0xa0   | 32    | W      | Data signal of px_p1_p1          |                                                                      |
+| s_axi_control | px_p1_p2    | 0xa8   | 32    | W      | Data signal of px_p1_p2          |                                                                      |
+| s_axi_control | px_p2_m2    | 0xb0   | 32    | W      | Data signal of px_p2_m2          |                                                                      |
+| s_axi_control | px_p2_m1    | 0xb8   | 32    | W      | Data signal of px_p2_m1          |                                                                      |
+| s_axi_control | px_p2_p0    | 0xc0   | 32    | W      | Data signal of px_p2_p0          |                                                                      |
+| s_axi_control | px_p2_p1    | 0xc8   | 32    | W      | Data signal of px_p2_p1          |                                                                      |
+| s_axi_control | px_p2_p2    | 0xd0   | 32    | W      | Data signal of px_p2_p2          |                                                                      |
+| s_axi_control | result      | 0xd8   | 32    | R      | Data signal of result            |                                                                      |
+| s_axi_control | result_ctrl | 0xdc   | 32    | R      | Control signal of result         | 0=result_ap_vld                                                      |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------+
+| Argument | Direction | Datatype       |
++----------+-----------+----------------+
+| px_m2_m2 | in        | unsigned char  |
+| px_m2_m1 | in        | unsigned char  |
+| px_m2_p0 | in        | unsigned char  |
+| px_m2_p1 | in        | unsigned char  |
+| px_m2_p2 | in        | unsigned char  |
+| px_m1_m2 | in        | unsigned char  |
+| px_m1_m1 | in        | unsigned char  |
+| px_m1_p0 | in        | unsigned char  |
+| px_m1_p1 | in        | unsigned char  |
+| px_m1_p2 | in        | unsigned char  |
+| px_p0_m2 | in        | unsigned char  |
+| px_p0_m1 | in        | unsigned char  |
+| px_p0_p0 | in        | unsigned char  |
+| px_p0_p1 | in        | unsigned char  |
+| px_p0_p2 | in        | unsigned char  |
+| px_p1_m2 | in        | unsigned char  |
+| px_p1_m1 | in        | unsigned char  |
+| px_p1_p0 | in        | unsigned char  |
+| px_p1_p1 | in        | unsigned char  |
+| px_p1_p2 | in        | unsigned char  |
+| px_p2_m2 | in        | unsigned char  |
+| px_p2_m1 | in        | unsigned char  |
+| px_p2_p0 | in        | unsigned char  |
+| px_p2_p1 | in        | unsigned char  |
+| px_p2_p2 | in        | unsigned char  |
+| result   | out       | unsigned char* |
++----------+-----------+----------------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+---------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                               |
++----------+---------------+----------+---------------------------------------+
+| px_m2_m2 | s_axi_control | register | name=px_m2_m2 offset=0x10 range=32    |
+| px_m2_m1 | s_axi_control | register | name=px_m2_m1 offset=0x18 range=32    |
+| px_m2_p0 | s_axi_control | register | name=px_m2_p0 offset=0x20 range=32    |
+| px_m2_p1 | s_axi_control | register | name=px_m2_p1 offset=0x28 range=32    |
+| px_m2_p2 | s_axi_control | register | name=px_m2_p2 offset=0x30 range=32    |
+| px_m1_m2 | s_axi_control | register | name=px_m1_m2 offset=0x38 range=32    |
+| px_m1_m1 | s_axi_control | register | name=px_m1_m1 offset=0x40 range=32    |
+| px_m1_p0 | s_axi_control | register | name=px_m1_p0 offset=0x48 range=32    |
+| px_m1_p1 | s_axi_control | register | name=px_m1_p1 offset=0x50 range=32    |
+| px_m1_p2 | s_axi_control | register | name=px_m1_p2 offset=0x58 range=32    |
+| px_p0_m2 | s_axi_control | register | name=px_p0_m2 offset=0x60 range=32    |
+| px_p0_m1 | s_axi_control | register | name=px_p0_m1 offset=0x68 range=32    |
+| px_p0_p0 | s_axi_control | register | name=px_p0_p0 offset=0x70 range=32    |
+| px_p0_p1 | s_axi_control | register | name=px_p0_p1 offset=0x78 range=32    |
+| px_p0_p2 | s_axi_control | register | name=px_p0_p2 offset=0x80 range=32    |
+| px_p1_m2 | s_axi_control | register | name=px_p1_m2 offset=0x88 range=32    |
+| px_p1_m1 | s_axi_control | register | name=px_p1_m1 offset=0x90 range=32    |
+| px_p1_p0 | s_axi_control | register | name=px_p1_p0 offset=0x98 range=32    |
+| px_p1_p1 | s_axi_control | register | name=px_p1_p1 offset=0xa0 range=32    |
+| px_p1_p2 | s_axi_control | register | name=px_p1_p2 offset=0xa8 range=32    |
+| px_p2_m2 | s_axi_control | register | name=px_p2_m2 offset=0xb0 range=32    |
+| px_p2_m1 | s_axi_control | register | name=px_p2_m1 offset=0xb8 range=32    |
+| px_p2_p0 | s_axi_control | register | name=px_p2_p0 offset=0xc0 range=32    |
+| px_p2_p1 | s_axi_control | register | name=px_p2_p1 offset=0xc8 range=32    |
+| px_p2_p2 | s_axi_control | register | name=px_p2_p2 offset=0xd0 range=32    |
+| result   | s_axi_control | register | name=result offset=0xd8 range=32      |
+| result   | s_axi_control | register | name=result_ctrl offset=0xdc range=32 |
++----------+---------------+----------+---------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| Name                                       | DSP | Pragma | Variable    | Op  | Impl      | Latency |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| + conv5_hw_gen                             | 5   |        |             |     |           |         |
+|   mul_8ns_7ns_14_1_1_U2                    |     |        | t15         | mul | auto      | 0       |
+|   tmp1_fu_394_p2                           |     |        | tmp1        | add | fabric    | 0       |
+|   tmp2_fu_404_p2                           |     |        | tmp2        | add | fabric    | 0       |
+|   tmp_fu_414_p2                            |     |        | tmp         | add | fabric    | 0       |
+|   tmp4_fu_424_p2                           |     |        | tmp4        | add | fabric    | 0       |
+|   tmp5_fu_434_p2                           |     |        | tmp5        | add | fabric    | 0       |
+|   tmp3_fu_444_p2                           |     |        | tmp3        | add | fabric    | 0       |
+|   tmp63_fu_454_p2                          |     |        | tmp63       | add | fabric    | 0       |
+|   tmp6_fu_460_p2                           |     |        | tmp6        | add | fabric    | 0       |
+|   tmp12_fu_470_p2                          |     |        | tmp12       | add | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | tmp10       | add | dsp_slice | 3       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | tmp11       | mul | dsp_slice | 3       |
+|   tmp13_fu_496_p2                          |     |        | tmp13       | add | fabric    | 0       |
+|   tmp14_fu_506_p2                          |     |        | tmp14       | add | fabric    | 0       |
+|   tmp141_fu_516_p2                         |     |        | tmp141      | add | fabric    | 0       |
+|   tmp21_fu_522_p2                          |     |        | tmp21       | add | fabric    | 0       |
+|   tmp22_fu_532_p2                          |     |        | tmp22       | add | fabric    | 0       |
+|   tmp18_fu_542_p2                          |     |        | tmp18       | add | fabric    | 0       |
+|   tmp19_fu_603_p2                          |     |        | tmp19       | sub | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | add_ln128   | add | dsp_slice | 3       |
+|   add_ln128_1_fu_613_p2                    |     |        | add_ln128_1 | add | fabric    | 0       |
+|   add_ln128_2_fu_653_p2                    |     |        | add_ln128_2 | add | fabric    | 0       |
+|   add_ln128_4_fu_548_p2                    |     |        | add_ln128_4 | add | fabric    | 0       |
+|   add_ln128_5_fu_558_p2                    |     |        | add_ln128_5 | add | fabric    | 0       |
+|   t69_fu_666_p2                            |     |        | t69         | add | fabric    | 0       |
+|   mul_32ns_34ns_49_2_1_U1                  | 4   |        | mul_ln129   | mul | auto      | 1       |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + conv5_hw_gen    |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+----------------------------------------+-------------------------------------------------------------+
+| Type      | Options                                | Location                                                    |
++-----------+----------------------------------------+-------------------------------------------------------------+
+| interface | s_axilite port=return bundle=control   | ../../kernels/conv5/gen/hw.cpp:6 in conv5_hw_gen, return    |
+| interface | s_axilite port=px_m2_m2 bundle=control | ../../kernels/conv5/gen/hw.cpp:7 in conv5_hw_gen, px_m2_m2  |
+| interface | s_axilite port=px_m2_m1 bundle=control | ../../kernels/conv5/gen/hw.cpp:8 in conv5_hw_gen, px_m2_m1  |
+| interface | s_axilite port=px_m2_p0 bundle=control | ../../kernels/conv5/gen/hw.cpp:9 in conv5_hw_gen, px_m2_p0  |
+| interface | s_axilite port=px_m2_p1 bundle=control | ../../kernels/conv5/gen/hw.cpp:10 in conv5_hw_gen, px_m2_p1 |
+| interface | s_axilite port=px_m2_p2 bundle=control | ../../kernels/conv5/gen/hw.cpp:11 in conv5_hw_gen, px_m2_p2 |
+| interface | s_axilite port=px_m1_m2 bundle=control | ../../kernels/conv5/gen/hw.cpp:12 in conv5_hw_gen, px_m1_m2 |
+| interface | s_axilite port=px_m1_m1 bundle=control | ../../kernels/conv5/gen/hw.cpp:13 in conv5_hw_gen, px_m1_m1 |
+| interface | s_axilite port=px_m1_p0 bundle=control | ../../kernels/conv5/gen/hw.cpp:14 in conv5_hw_gen, px_m1_p0 |
+| interface | s_axilite port=px_m1_p1 bundle=control | ../../kernels/conv5/gen/hw.cpp:15 in conv5_hw_gen, px_m1_p1 |
+| interface | s_axilite port=px_m1_p2 bundle=control | ../../kernels/conv5/gen/hw.cpp:16 in conv5_hw_gen, px_m1_p2 |
+| interface | s_axilite port=px_p0_m2 bundle=control | ../../kernels/conv5/gen/hw.cpp:17 in conv5_hw_gen, px_p0_m2 |
+| interface | s_axilite port=px_p0_m1 bundle=control | ../../kernels/conv5/gen/hw.cpp:18 in conv5_hw_gen, px_p0_m1 |
+| interface | s_axilite port=px_p0_p0 bundle=control | ../../kernels/conv5/gen/hw.cpp:19 in conv5_hw_gen, px_p0_p0 |
+| interface | s_axilite port=px_p0_p1 bundle=control | ../../kernels/conv5/gen/hw.cpp:20 in conv5_hw_gen, px_p0_p1 |
+| interface | s_axilite port=px_p0_p2 bundle=control | ../../kernels/conv5/gen/hw.cpp:21 in conv5_hw_gen, px_p0_p2 |
+| interface | s_axilite port=px_p1_m2 bundle=control | ../../kernels/conv5/gen/hw.cpp:22 in conv5_hw_gen, px_p1_m2 |
+| interface | s_axilite port=px_p1_m1 bundle=control | ../../kernels/conv5/gen/hw.cpp:23 in conv5_hw_gen, px_p1_m1 |
+| interface | s_axilite port=px_p1_p0 bundle=control | ../../kernels/conv5/gen/hw.cpp:24 in conv5_hw_gen, px_p1_p0 |
+| interface | s_axilite port=px_p1_p1 bundle=control | ../../kernels/conv5/gen/hw.cpp:25 in conv5_hw_gen, px_p1_p1 |
+| interface | s_axilite port=px_p1_p2 bundle=control | ../../kernels/conv5/gen/hw.cpp:26 in conv5_hw_gen, px_p1_p2 |
+| interface | s_axilite port=px_p2_m2 bundle=control | ../../kernels/conv5/gen/hw.cpp:27 in conv5_hw_gen, px_p2_m2 |
+| interface | s_axilite port=px_p2_m1 bundle=control | ../../kernels/conv5/gen/hw.cpp:28 in conv5_hw_gen, px_p2_m1 |
+| interface | s_axilite port=px_p2_p0 bundle=control | ../../kernels/conv5/gen/hw.cpp:29 in conv5_hw_gen, px_p2_p0 |
+| interface | s_axilite port=px_p2_p1 bundle=control | ../../kernels/conv5/gen/hw.cpp:30 in conv5_hw_gen, px_p2_p1 |
+| interface | s_axilite port=px_p2_p2 bundle=control | ../../kernels/conv5/gen/hw.cpp:31 in conv5_hw_gen, px_p2_p2 |
+| interface | s_axilite port=result bundle=control   | ../../kernels/conv5/gen/hw.cpp:32 in conv5_hw_gen, result   |
+| pipeline  | II=1                                   | ../../kernels/conv5/gen/hw.cpp:33 in conv5_hw_gen           |
++-----------+----------------------------------------+-------------------------------------------------------------+
+
+

@@ -1,0 +1,9 @@
+kernel,opt,instr_per_image
+sobel,O2,496168
+sobel,O3,171763
+gauss,O2,384433
+gauss,O3,125695
+median,O2,1510035
+median,O3,1354561
+conv5,O2,711697
+conv5,O3,257465

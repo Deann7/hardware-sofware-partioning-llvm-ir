@@ -1,0 +1,143 @@
+
+
+================================================================
+== Synthesis Summary Report of 'median_hw_gen'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 08:37:37 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        median_gen
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |     Modules     | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |    |           |           |     |
+    |     & Loops     | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT    | URAM|
+    +-----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |+ median_hw_gen  |     -|  0.97|        6|  60.000|         -|        1|     -|       yes|     -|   -|  671 (~0%)|  1494 (2%)|    -|
+    +-----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register    | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL        | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER        | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER      | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR      | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | px_m1_m1    | 0x10   | 32    | W      | Data signal of px_m1_m1          |                                                                      |
+| s_axi_control | px_m1_p0    | 0x18   | 32    | W      | Data signal of px_m1_p0          |                                                                      |
+| s_axi_control | px_m1_p1    | 0x20   | 32    | W      | Data signal of px_m1_p1          |                                                                      |
+| s_axi_control | px_p0_m1    | 0x28   | 32    | W      | Data signal of px_p0_m1          |                                                                      |
+| s_axi_control | px_p0_p0    | 0x30   | 32    | W      | Data signal of px_p0_p0          |                                                                      |
+| s_axi_control | px_p0_p1    | 0x38   | 32    | W      | Data signal of px_p0_p1          |                                                                      |
+| s_axi_control | px_p1_m1    | 0x40   | 32    | W      | Data signal of px_p1_m1          |                                                                      |
+| s_axi_control | px_p1_p0    | 0x48   | 32    | W      | Data signal of px_p1_p0          |                                                                      |
+| s_axi_control | px_p1_p1    | 0x50   | 32    | W      | Data signal of px_p1_p1          |                                                                      |
+| s_axi_control | result      | 0x58   | 32    | R      | Data signal of result            |                                                                      |
+| s_axi_control | result_ctrl | 0x5c   | 32    | R      | Control signal of result         | 0=result_ap_vld                                                      |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------+
+| Argument | Direction | Datatype       |
++----------+-----------+----------------+
+| px_m1_m1 | in        | unsigned char  |
+| px_m1_p0 | in        | unsigned char  |
+| px_m1_p1 | in        | unsigned char  |
+| px_p0_m1 | in        | unsigned char  |
+| px_p0_p0 | in        | unsigned char  |
+| px_p0_p1 | in        | unsigned char  |
+| px_p1_m1 | in        | unsigned char  |
+| px_p1_p0 | in        | unsigned char  |
+| px_p1_p1 | in        | unsigned char  |
+| result   | out       | unsigned char* |
++----------+-----------+----------------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+---------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                               |
++----------+---------------+----------+---------------------------------------+
+| px_m1_m1 | s_axi_control | register | name=px_m1_m1 offset=0x10 range=32    |
+| px_m1_p0 | s_axi_control | register | name=px_m1_p0 offset=0x18 range=32    |
+| px_m1_p1 | s_axi_control | register | name=px_m1_p1 offset=0x20 range=32    |
+| px_p0_m1 | s_axi_control | register | name=px_p0_m1 offset=0x28 range=32    |
+| px_p0_p0 | s_axi_control | register | name=px_p0_p0 offset=0x30 range=32    |
+| px_p0_p1 | s_axi_control | register | name=px_p0_p1 offset=0x38 range=32    |
+| px_p1_m1 | s_axi_control | register | name=px_p1_m1 offset=0x40 range=32    |
+| px_p1_p0 | s_axi_control | register | name=px_p1_p0 offset=0x48 range=32    |
+| px_p1_p1 | s_axi_control | register | name=px_p1_p1 offset=0x50 range=32    |
+| result   | s_axi_control | register | name=result offset=0x58 range=32      |
+| result   | s_axi_control | register | name=result_ctrl offset=0x5c range=32 |
++----------+---------------+----------+---------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
+  No bind op info in design
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + median_hw_gen   |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+----------------------------------------+---------------------------------------------------------------+
+| Type      | Options                                | Location                                                      |
++-----------+----------------------------------------+---------------------------------------------------------------+
+| interface | s_axilite port=return bundle=control   | ../../kernels/median/gen/hw.cpp:6 in median_hw_gen, return    |
+| interface | s_axilite port=px_m1_m1 bundle=control | ../../kernels/median/gen/hw.cpp:7 in median_hw_gen, px_m1_m1  |
+| interface | s_axilite port=px_m1_p0 bundle=control | ../../kernels/median/gen/hw.cpp:8 in median_hw_gen, px_m1_p0  |
+| interface | s_axilite port=px_m1_p1 bundle=control | ../../kernels/median/gen/hw.cpp:9 in median_hw_gen, px_m1_p1  |
+| interface | s_axilite port=px_p0_m1 bundle=control | ../../kernels/median/gen/hw.cpp:10 in median_hw_gen, px_p0_m1 |
+| interface | s_axilite port=px_p0_p0 bundle=control | ../../kernels/median/gen/hw.cpp:11 in median_hw_gen, px_p0_p0 |
+| interface | s_axilite port=px_p0_p1 bundle=control | ../../kernels/median/gen/hw.cpp:12 in median_hw_gen, px_p0_p1 |
+| interface | s_axilite port=px_p1_m1 bundle=control | ../../kernels/median/gen/hw.cpp:13 in median_hw_gen, px_p1_m1 |
+| interface | s_axilite port=px_p1_p0 bundle=control | ../../kernels/median/gen/hw.cpp:14 in median_hw_gen, px_p1_p0 |
+| interface | s_axilite port=px_p1_p1 bundle=control | ../../kernels/median/gen/hw.cpp:15 in median_hw_gen, px_p1_p1 |
+| interface | s_axilite port=result bundle=control   | ../../kernels/median/gen/hw.cpp:16 in median_hw_gen, result   |
+| pipeline  | II=1                                   | ../../kernels/median/gen/hw.cpp:17 in median_hw_gen           |
++-----------+----------------------------------------+---------------------------------------------------------------+
+
+

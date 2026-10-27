@@ -1,0 +1,137 @@
+
+
+================================================================
+== Synthesis Summary Report of 'median_stream'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 09:01:11 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        median_stream
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |     Modules     |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |    |           |           |     |
+    |     & Loops     |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT    | URAM|
+    +-----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |+ median_stream  |  Timing|  -0.98|     4234|  4.234e+04|         -|     4235|     -|        no|     -|   -|  742 (~0%)|  1460 (2%)|    -|
+    | o ROW_COL       |       -|   7.30|     4232|  4.232e+04|         9|        1|  4225|       yes|     -|   -|          -|          -|    -|
+    +-----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| in_r      | in        | both          | 8     | 1     | 1     | 1      | 1     | 1      |
+| out_r     | out       | both          | 8     | 1     | 1     | 1      | 1     | 1      |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------------------------------------------+
+| Argument | Direction | Datatype                                               |
++----------+-----------+--------------------------------------------------------+
+| in       | in        | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
+| out      | out       | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
++----------+-----------+--------------------------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+
+| Argument | HW Interface | HW Type   |
++----------+--------------+-----------+
+| in       | in_r         | interface |
+| out      | out_r        | interface |
++----------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------+-----+--------+------------+-----+--------+---------+
+| Name                   | DSP | Pragma | Variable   | Op  | Impl   | Latency |
++------------------------+-----+--------+------------+-----+--------+---------+
+| + median_stream        | 0   |        |            |     |        |         |
+|   add_ln21_fu_275_p2   |     |        | add_ln21   | add | fabric | 0       |
+|   add_ln21_1_fu_301_p2 |     |        | add_ln21_1 | add | fabric | 0       |
+|   y_fu_329_p2          |     |        | y          | add | fabric | 0       |
+|   add_ln42_fu_377_p2   |     |        | add_ln42   | add | fabric | 0       |
+|   add_ln23_fu_405_p2   |     |        | add_ln23   | add | fabric | 0       |
++------------------------+-----+--------+------------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage         | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |               |           |      |      |        |          |      |         | Banks            |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| + median_stream   |               |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface     | s_axilite |      |      |        |          |      |         |                  |
+|   lb_U            | ram_s2p array |           |      |      |        | lb       | auto | 1       | 8, 64, 1         |
+|   lb_1_U          | ram_s2p array |           |      |      |        | lb_1     | auto | 1       | 8, 64, 1         |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+-------------------------------------------------------------+
+| Type            | Options                              | Location                                                    |
++-----------------+--------------------------------------+-------------------------------------------------------------+
+| interface       | axis port=in                         | ../../common/stencil_stream.inc:12 in median_stream, in     |
+| interface       | axis port=out                        | ../../common/stencil_stream.inc:13 in median_stream, out    |
+| interface       | s_axilite port=return bundle=control | ../../common/stencil_stream.inc:14 in median_stream, return |
+| array_partition | variable=lb complete dim=1           | ../../common/stencil_stream.inc:16 in median_stream, lb     |
+| array_partition | variable=win complete dim=0          | ../../common/stencil_stream.inc:18 in median_stream, win    |
+| pipeline        | II=1                                 | ../../common/stencil_stream.inc:24 in median_stream         |
+| array_partition | variable=colv complete               | ../../common/stencil_stream.inc:26 in median_stream, colv   |
+| inline          |                                      | ../../kernels/median/op.h:6 in kop                          |
+| array_partition | variable=v complete                  | ../../kernels/median/op.h:8 in kop, v                       |
+| unroll          |                                      | ../../kernels/median/op.h:10 in kop                         |
+| unroll          |                                      | ../../kernels/median/op.h:12 in kop                         |
+| unroll          |                                      | ../../kernels/median/op.h:17 in kop                         |
+| unroll          |                                      | ../../kernels/median/op.h:19 in kop                         |
++-----------------+--------------------------------------+-------------------------------------------------------------+
+
+

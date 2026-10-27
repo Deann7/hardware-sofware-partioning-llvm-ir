@@ -1,0 +1,151 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sobel_hw_gen'
+================================================================
++ General Information: 
+    * Date:           Mon Oct 26 22:38:55 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        sobel_gen
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |     Modules    | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |    |           |           |     |
+    |     & Loops    | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT    | URAM|
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |+ sobel_hw_gen  |     -|  0.17|        2|  20.000|         -|        1|     -|       yes|     -|   -|  231 (~0%)|  385 (~0%)|    -|
+    +----------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register    | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL        | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER        | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER      | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR      | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | px_m1_m1    | 0x10   | 32    | W      | Data signal of px_m1_m1          |                                                                      |
+| s_axi_control | px_m1_p0    | 0x18   | 32    | W      | Data signal of px_m1_p0          |                                                                      |
+| s_axi_control | px_m1_p1    | 0x20   | 32    | W      | Data signal of px_m1_p1          |                                                                      |
+| s_axi_control | px_p0_m1    | 0x28   | 32    | W      | Data signal of px_p0_m1          |                                                                      |
+| s_axi_control | px_p0_p1    | 0x30   | 32    | W      | Data signal of px_p0_p1          |                                                                      |
+| s_axi_control | px_p1_m1    | 0x38   | 32    | W      | Data signal of px_p1_m1          |                                                                      |
+| s_axi_control | px_p1_p0    | 0x40   | 32    | W      | Data signal of px_p1_p0          |                                                                      |
+| s_axi_control | px_p1_p1    | 0x48   | 32    | W      | Data signal of px_p1_p1          |                                                                      |
+| s_axi_control | result      | 0x50   | 32    | R      | Data signal of result            |                                                                      |
+| s_axi_control | result_ctrl | 0x54   | 32    | R      | Control signal of result         | 0=result_ap_vld                                                      |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------+
+| Argument | Direction | Datatype       |
++----------+-----------+----------------+
+| px_m1_m1 | in        | unsigned char  |
+| px_m1_p0 | in        | unsigned char  |
+| px_m1_p1 | in        | unsigned char  |
+| px_p0_m1 | in        | unsigned char  |
+| px_p0_p1 | in        | unsigned char  |
+| px_p1_m1 | in        | unsigned char  |
+| px_p1_p0 | in        | unsigned char  |
+| px_p1_p1 | in        | unsigned char  |
+| result   | out       | unsigned char* |
++----------+-----------+----------------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+---------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                               |
++----------+---------------+----------+---------------------------------------+
+| px_m1_m1 | s_axi_control | register | name=px_m1_m1 offset=0x10 range=32    |
+| px_m1_p0 | s_axi_control | register | name=px_m1_p0 offset=0x18 range=32    |
+| px_m1_p1 | s_axi_control | register | name=px_m1_p1 offset=0x20 range=32    |
+| px_p0_m1 | s_axi_control | register | name=px_p0_m1 offset=0x28 range=32    |
+| px_p0_p1 | s_axi_control | register | name=px_p0_p1 offset=0x30 range=32    |
+| px_p1_m1 | s_axi_control | register | name=px_p1_m1 offset=0x38 range=32    |
+| px_p1_p0 | s_axi_control | register | name=px_p1_p0 offset=0x40 range=32    |
+| px_p1_p1 | s_axi_control | register | name=px_p1_p1 offset=0x48 range=32    |
+| result   | s_axi_control | register | name=result offset=0x50 range=32      |
+| result   | s_axi_control | register | name=result_ctrl offset=0x54 range=32 |
++----------+---------------+----------+---------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------+-----+--------+----------+-----+--------+---------+
+| Name                 | DSP | Pragma | Variable | Op  | Impl   | Latency |
++----------------------+-----+--------+----------+-----+--------+---------+
+| + sobel_hw_gen       | 0   |        |          |     |        |         |
+|   t10_fu_181_p2      |     |        | t10      | sub | fabric | 0       |
+|   tmp_fu_207_p2      |     |        | tmp      | sub | fabric | 0       |
+|   add_ln30_fu_213_p2 |     |        | add_ln30 | add | fabric | 0       |
+|   t15_fu_223_p2      |     |        | t15      | sub | fabric | 0       |
+|   t22_fu_288_p2      |     |        | t22      | sub | fabric | 0       |
+|   t23_fu_314_p2      |     |        | t23      | sub | fabric | 0       |
+|   t24_fu_332_p2      |     |        | t24      | add | fabric | 0       |
++----------------------+-----+--------+----------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + sobel_hw_gen    |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+----------------------------------------+-------------------------------------------------------------+
+| Type      | Options                                | Location                                                    |
++-----------+----------------------------------------+-------------------------------------------------------------+
+| interface | s_axilite port=return bundle=control   | ../../kernels/sobel/gen/hw.cpp:6 in sobel_hw_gen, return    |
+| interface | s_axilite port=px_m1_m1 bundle=control | ../../kernels/sobel/gen/hw.cpp:7 in sobel_hw_gen, px_m1_m1  |
+| interface | s_axilite port=px_m1_p0 bundle=control | ../../kernels/sobel/gen/hw.cpp:8 in sobel_hw_gen, px_m1_p0  |
+| interface | s_axilite port=px_m1_p1 bundle=control | ../../kernels/sobel/gen/hw.cpp:9 in sobel_hw_gen, px_m1_p1  |
+| interface | s_axilite port=px_p0_m1 bundle=control | ../../kernels/sobel/gen/hw.cpp:10 in sobel_hw_gen, px_p0_m1 |
+| interface | s_axilite port=px_p0_p1 bundle=control | ../../kernels/sobel/gen/hw.cpp:11 in sobel_hw_gen, px_p0_p1 |
+| interface | s_axilite port=px_p1_m1 bundle=control | ../../kernels/sobel/gen/hw.cpp:12 in sobel_hw_gen, px_p1_m1 |
+| interface | s_axilite port=px_p1_p0 bundle=control | ../../kernels/sobel/gen/hw.cpp:13 in sobel_hw_gen, px_p1_p0 |
+| interface | s_axilite port=px_p1_p1 bundle=control | ../../kernels/sobel/gen/hw.cpp:14 in sobel_hw_gen, px_p1_p1 |
+| interface | s_axilite port=result bundle=control   | ../../kernels/sobel/gen/hw.cpp:15 in sobel_hw_gen, result   |
+| pipeline  | II=1                                   | ../../kernels/sobel/gen/hw.cpp:16 in sobel_hw_gen           |
++-----------+----------------------------------------+-------------------------------------------------------------+
+
+

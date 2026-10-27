@@ -1,0 +1,162 @@
+
+
+================================================================
+== Synthesis Summary Report of 'conv5_win'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 09:46:08 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        conv5_manual
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+---------+-----------+----------+-----+
+    |   Modules   | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |         |           |          |     |
+    |   & Loops   | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM |   DSP   |     FF    |    LUT   | URAM|
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+---------+-----------+----------+-----+
+    |+ conv5_win  |     -|  0.38|        5|  50.000|         -|        1|     -|       yes|     -|  2 (~0%)|  452 (~0%)|  934 (1%)|    -|
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+---------+-----------+----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register    | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL        | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER        | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER      | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR      | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | win_1       | 0x10   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_2       | 0x14   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_3       | 0x18   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_4       | 0x1c   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_5       | 0x20   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_6       | 0x24   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_7       | 0x28   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | result      | 0x30   | 32    | R      | Data signal of result            |                                                                      |
+| s_axi_control | result_ctrl | 0x34   | 32    | R      | Control signal of result         | 0=result_ap_vld                                                      |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------+
+| Argument | Direction | Datatype       |
++----------+-----------+----------------+
+| win      | in        | ap_uint<200>   |
+| result   | out       | unsigned char* |
++----------+-----------+----------------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+---------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                               |
++----------+---------------+----------+---------------------------------------+
+| win      | s_axi_control | register | name=win_1 offset=0x10 range=32       |
+| win      | s_axi_control | register | name=win_2 offset=0x14 range=32       |
+| win      | s_axi_control | register | name=win_3 offset=0x18 range=32       |
+| win      | s_axi_control | register | name=win_4 offset=0x1c range=32       |
+| win      | s_axi_control | register | name=win_5 offset=0x20 range=32       |
+| win      | s_axi_control | register | name=win_6 offset=0x24 range=32       |
+| win      | s_axi_control | register | name=win_7 offset=0x28 range=32       |
+| result   | s_axi_control | register | name=result offset=0x30 range=32      |
+| result   | s_axi_control | register | name=result_ctrl offset=0x34 range=32 |
++----------+---------------+----------+---------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| Name                                       | DSP | Pragma | Variable    | Op  | Impl      | Latency |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| + conv5_win                                | 2   |        |             |     |           |         |
+|   mul_8ns_7ns_14_1_1_U1                    |     |        | mul_ln17    | mul | auto      | 0       |
+|   add_ln17_fu_493_p2                       |     |        | add_ln17    | add | fabric    | 0       |
+|   add_ln17_1_fu_503_p2                     |     |        | add_ln17_1  | add | fabric    | 0       |
+|   add_ln17_2_fu_513_p2                     |     |        | add_ln17_2  | add | fabric    | 0       |
+|   add_ln17_3_fu_523_p2                     |     |        | add_ln17_3  | add | fabric    | 0       |
+|   add_ln17_4_fu_533_p2                     |     |        | add_ln17_4  | add | fabric    | 0       |
+|   add_ln17_5_fu_543_p2                     |     |        | add_ln17_5  | add | fabric    | 0       |
+|   add_ln17_6_fu_553_p2                     |     |        | add_ln17_6  | add | fabric    | 0       |
+|   add_ln17_7_fu_559_p2                     |     |        | add_ln17_7  | add | fabric    | 0       |
+|   add_ln17_8_fu_569_p2                     |     |        | add_ln17_8  | add | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | add_ln17_9  | add | dsp_slice | 3       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | mul_ln17_1  | mul | dsp_slice | 3       |
+|   add_ln17_10_fu_595_p2                    |     |        | add_ln17_10 | add | fabric    | 0       |
+|   add_ln17_11_fu_605_p2                    |     |        | add_ln17_11 | add | fabric    | 0       |
+|   add_ln17_12_fu_615_p2                    |     |        | add_ln17_12 | add | fabric    | 0       |
+|   tmp11_fu_621_p2                          |     |        | tmp11       | add | fabric    | 0       |
+|   tmp12_fu_631_p2                          |     |        | tmp12       | add | fabric    | 0       |
+|   tmp18_fu_641_p2                          |     |        | tmp18       | add | fabric    | 0       |
+|   tmp19_fu_710_p2                          |     |        | tmp19       | sub | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | add_ln20_1  | add | dsp_slice | 3       |
+|   add_ln20_2_fu_720_p2                     |     |        | add_ln20_2  | add | fabric    | 0       |
+|   add_ln20_3_fu_760_p2                     |     |        | add_ln20_3  | add | fabric    | 0       |
+|   add_ln20_5_fu_655_p2                     |     |        | add_ln20_5  | add | fabric    | 0       |
+|   add_ln20_6_fu_665_p2                     |     |        | add_ln20_6  | add | fabric    | 0       |
+|   add_ln20_fu_773_p2                       |     |        | add_ln20    | add | fabric    | 0       |
+|   mul_18s_20ns_38_1_1_U2                   | 1   |        | mul_ln20    | mul | auto      | 0       |
+|   sub_ln20_fu_810_p2                       |     |        | sub_ln20    | sub | fabric    | 0       |
+|   sub_ln20_1_fu_831_p2                     |     |        | sub_ln20_1  | sub | fabric    | 0       |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + conv5_win       |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+-------------------------------------------------------+
+| Type            | Options                              | Location                                              |
++-----------------+--------------------------------------+-------------------------------------------------------+
+| interface       | s_axilite port=return bundle=control | ../../kernels/conv5/manual.cpp:7 in conv5_win, return |
+| interface       | s_axilite port=win bundle=control    | ../../kernels/conv5/manual.cpp:8 in conv5_win, win    |
+| interface       | s_axilite port=result bundle=control | ../../kernels/conv5/manual.cpp:9 in conv5_win, result |
+| pipeline        | II=1                                 | ../../kernels/conv5/manual.cpp:10 in conv5_win        |
+| array_partition | variable=w complete dim=0            | ../../kernels/conv5/manual.cpp:12 in conv5_win, w     |
+| unroll          |                                      | ../../kernels/conv5/manual.cpp:14 in conv5_win        |
+| unroll          |                                      | ../../kernels/conv5/manual.cpp:16 in conv5_win        |
+| inline          |                                      | ../../kernels/conv5/op.h:6 in kop                     |
+| unroll          |                                      | ../../kernels/conv5/op.h:14 in kop                    |
+| unroll          |                                      | ../../kernels/conv5/op.h:16 in kop                    |
++-----------------+--------------------------------------+-------------------------------------------------------+
+
+

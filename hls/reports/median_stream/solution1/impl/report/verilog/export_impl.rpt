@@ -1,0 +1,204 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Tue Oct 27 09:07:40 +0700 2026
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         median_stream
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z020-clg484-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  10 ns
+    * C-Synthesis target clock:    10 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              584
+FF:               473
+DSP:              0
+BRAM:             0
+URAM:             0
+SRL:              4
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 10.000      |
+| Post-Synthesis | 6.616       |
+| Post-Route     | 8.321       |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++----------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                             | LUT | FF  | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++----------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                             | 584 | 473 |     |      |      |     |        |      |         |          |        |
+|   (inst)                         | 415 | 383 |     |      |      |     |        |      |         |          |        |
+|   control_s_axi_U                | 59  | 27  |     |      |      |     |        |      |         |          |        |
+|   flow_control_loop_pipe_U       | 26  | 1   |     |      |      |     |        |      |         |          |        |
+|   lb_1_U                         | 12  | 8   |     |      |      |     |        |      |         |          |        |
+|   lb_U                           | 49  | 8   |     |      |      |     |        |      |         |          |        |
+|   regslice_both_in_r_V_data_V_U  | 10  | 20  |     |      |      |     |        |      |         |          |        |
+|   regslice_both_out_r_V_data_V_U | 9   | 20  |     |      |      |     |        |      |         |          |        |
+|   regslice_both_out_r_V_last_V_U | 6   | 6   |     |      |      |     |        |      |         |          |        |
++----------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 1.10%  | OK     |
+| FD                                                        | 50%       | 0.44%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.16%  | OK     |
+| MUXF7                                                     | 15%       | 0.00%  | OK     |
+| DSP                                                       | 80%       | 0.00%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.00%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 0.00%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 998       | 20     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 3.67   | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+------------------------+------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN         | ENDPOINT PIN           | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                        |                        |              |            |                |          DELAY |        DELAY |
++-------+-------+------------------------+------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 1.679 | v_63_reg_1178_reg[3]/C | v_91_reg_1255_reg[1]/D |            6 |         48 |          7.985 |          2.336 |        5.649 |
+| Path2 | 1.680 | v_63_reg_1178_reg[3]/C | v_91_reg_1255_reg[0]/D |            6 |         48 |          7.965 |          2.333 |        5.632 |
+| Path3 | 1.849 | v_63_reg_1178_reg[3]/C | v_76_reg_1234_reg[5]/D |            6 |         48 |          7.818 |          2.116 |        5.702 |
+| Path4 | 1.930 | v_63_reg_1178_reg[3]/C | v_91_reg_1255_reg[2]/D |            6 |         48 |          7.701 |          2.299 |        5.402 |
+| Path5 | 1.944 | v_67_reg_1213_reg[1]/C | v_81_reg_1268_reg[3]/D |            6 |         28 |          7.693 |          2.366 |        5.327 |
++-------+-------+------------------------+------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +--------------------------+----------------------+
+    | Path1 Cells              | Primitive Type       |
+    +--------------------------+----------------------+
+    | v_63_reg_1178_reg[3]     | FLOP_LATCH.flop.FDRE |
+    | v_77_reg_1227[7]_i_11    | LUT.others.LUT4      |
+    | v_77_reg_1227_reg[7]_i_2 | CARRY.others.CARRY4  |
+    | v_85_reg_1248[2]_i_2     | LUT.others.LUT3      |
+    | v_85_reg_1248[7]_i_15    | LUT.others.LUT6      |
+    | v_85_reg_1248_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_91_reg_1255[1]_i_1     | LUT.others.LUT5      |
+    | v_91_reg_1255_reg[1]     | FLOP_LATCH.flop.FDRE |
+    +--------------------------+----------------------+
+
+    +--------------------------+----------------------+
+    | Path2 Cells              | Primitive Type       |
+    +--------------------------+----------------------+
+    | v_63_reg_1178_reg[3]     | FLOP_LATCH.flop.FDRE |
+    | v_77_reg_1227[7]_i_11    | LUT.others.LUT4      |
+    | v_77_reg_1227_reg[7]_i_2 | CARRY.others.CARRY4  |
+    | v_85_reg_1248[2]_i_2     | LUT.others.LUT3      |
+    | v_85_reg_1248[7]_i_15    | LUT.others.LUT6      |
+    | v_85_reg_1248_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_91_reg_1255[0]_i_1     | LUT.others.LUT5      |
+    | v_91_reg_1255_reg[0]     | FLOP_LATCH.flop.FDRE |
+    +--------------------------+----------------------+
+
+    +--------------------------+----------------------+
+    | Path3 Cells              | Primitive Type       |
+    +--------------------------+----------------------+
+    | v_63_reg_1178_reg[3]     | FLOP_LATCH.flop.FDRE |
+    | v_77_reg_1227[7]_i_11    | LUT.others.LUT4      |
+    | v_77_reg_1227_reg[7]_i_2 | CARRY.others.CARRY4  |
+    | v_76_reg_1234[1]_i_2     | LUT.others.LUT3      |
+    | v_77_reg_1227[7]_i_16    | LUT.others.LUT6      |
+    | v_77_reg_1227_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_76_reg_1234[5]_i_1     | LUT.others.LUT5      |
+    | v_76_reg_1234_reg[5]     | FLOP_LATCH.flop.FDRE |
+    +--------------------------+----------------------+
+
+    +--------------------------+----------------------+
+    | Path4 Cells              | Primitive Type       |
+    +--------------------------+----------------------+
+    | v_63_reg_1178_reg[3]     | FLOP_LATCH.flop.FDRE |
+    | v_77_reg_1227[7]_i_11    | LUT.others.LUT4      |
+    | v_77_reg_1227_reg[7]_i_2 | CARRY.others.CARRY4  |
+    | v_85_reg_1248[2]_i_2     | LUT.others.LUT3      |
+    | v_85_reg_1248[7]_i_15    | LUT.others.LUT6      |
+    | v_85_reg_1248_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_91_reg_1255[2]_i_1     | LUT.others.LUT5      |
+    | v_91_reg_1255_reg[2]     | FLOP_LATCH.flop.FDRE |
+    +--------------------------+----------------------+
+
+    +--------------------------+----------------------+
+    | Path5 Cells              | Primitive Type       |
+    +--------------------------+----------------------+
+    | v_67_reg_1213_reg[1]     | FLOP_LATCH.flop.FDRE |
+    | v_69_reg_1262[7]_i_20    | LUT.others.LUT4      |
+    | v_69_reg_1262_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_81_reg_1268[3]_i_2     | LUT.others.LUT3      |
+    | v_81_reg_1268[7]_i_15    | LUT.others.LUT6      |
+    | v_81_reg_1268_reg[7]_i_3 | CARRY.others.CARRY4  |
+    | v_81_reg_1268[3]_i_1     | LUT.others.LUT5      |
+    | v_81_reg_1268_reg[3]     | FLOP_LATCH.flop.FDRE |
+    +--------------------------+----------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+-----------------------------------------------------------------------+
+| Report Type              | Report Location                                                       |
++--------------------------+-----------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/median_stream_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/median_stream_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/median_stream_status_routed.rpt                   |
+| timing                   | impl/verilog/report/median_stream_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/median_stream_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/median_stream_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/median_stream_utilization_hierarchical_routed.rpt |
++--------------------------+-----------------------------------------------------------------------+
+
+

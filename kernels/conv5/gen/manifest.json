@@ -1,0 +1,170 @@
+{
+  "boundary": 25,
+  "default_value": 0,
+  "function": "_Z12conv5_filterPA64_hS0_",
+  "hardware": 72,
+  "hardware_opcodes": {
+    "add": 24,
+    "mul": 9,
+    "shl": 12,
+    "trunc": 1,
+    "udiv": 1,
+    "zext": 25
+  },
+  "inputs": [
+    {
+      "dx": -2,
+      "dy": -2,
+      "name": "px_m2_m2",
+      "offset": -130
+    },
+    {
+      "dx": -1,
+      "dy": -2,
+      "name": "px_m2_m1",
+      "offset": -129
+    },
+    {
+      "dx": 0,
+      "dy": -2,
+      "name": "px_m2_p0",
+      "offset": -128
+    },
+    {
+      "dx": 1,
+      "dy": -2,
+      "name": "px_m2_p1",
+      "offset": -127
+    },
+    {
+      "dx": 2,
+      "dy": -2,
+      "name": "px_m2_p2",
+      "offset": -126
+    },
+    {
+      "dx": -2,
+      "dy": -1,
+      "name": "px_m1_m2",
+      "offset": -66
+    },
+    {
+      "dx": -1,
+      "dy": -1,
+      "name": "px_m1_m1",
+      "offset": -65
+    },
+    {
+      "dx": 0,
+      "dy": -1,
+      "name": "px_m1_p0",
+      "offset": -64
+    },
+    {
+      "dx": 1,
+      "dy": -1,
+      "name": "px_m1_p1",
+      "offset": -63
+    },
+    {
+      "dx": 2,
+      "dy": -1,
+      "name": "px_m1_p2",
+      "offset": -62
+    },
+    {
+      "dx": -2,
+      "dy": 0,
+      "name": "px_p0_m2",
+      "offset": -2
+    },
+    {
+      "dx": -1,
+      "dy": 0,
+      "name": "px_p0_m1",
+      "offset": -1
+    },
+    {
+      "dx": 0,
+      "dy": 0,
+      "name": "px_p0_p0",
+      "offset": 0
+    },
+    {
+      "dx": 1,
+      "dy": 0,
+      "name": "px_p0_p1",
+      "offset": 1
+    },
+    {
+      "dx": 2,
+      "dy": 0,
+      "name": "px_p0_p2",
+      "offset": 2
+    },
+    {
+      "dx": -2,
+      "dy": 1,
+      "name": "px_p1_m2",
+      "offset": 62
+    },
+    {
+      "dx": -1,
+      "dy": 1,
+      "name": "px_p1_m1",
+      "offset": 63
+    },
+    {
+      "dx": 0,
+      "dy": 1,
+      "name": "px_p1_p0",
+      "offset": 64
+    },
+    {
+      "dx": 1,
+      "dy": 1,
+      "name": "px_p1_p1",
+      "offset": 65
+    },
+    {
+      "dx": 2,
+      "dy": 1,
+      "name": "px_p1_p2",
+      "offset": 66
+    },
+    {
+      "dx": -2,
+      "dy": 2,
+      "name": "px_p2_m2",
+      "offset": 126
+    },
+    {
+      "dx": -1,
+      "dy": 2,
+      "name": "px_p2_m1",
+      "offset": 127
+    },
+    {
+      "dx": 0,
+      "dy": 2,
+      "name": "px_p2_p0",
+      "offset": 128
+    },
+    {
+      "dx": 1,
+      "dy": 2,
+      "name": "px_p2_p1",
+      "offset": 129
+    },
+    {
+      "dx": 2,
+      "dy": 2,
+      "name": "px_p2_p2",
+      "offset": 130
+    }
+  ],
+  "ir_instructions_total": 152,
+  "kernel": "conv5",
+  "row_width": 64,
+  "software": 55
+}

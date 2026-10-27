@@ -1,0 +1,69 @@
+{
+  "boundary": 8,
+  "default_value": 0,
+  "function": "_Z21sobel_codesign_filterPA64_hS0_",
+  "hardware": 27,
+  "hardware_opcodes": {
+    "add": 9,
+    "call": 3,
+    "mul": 1,
+    "shl": 3,
+    "sub": 2,
+    "trunc": 1,
+    "zext": 8
+  },
+  "inputs": [
+    {
+      "dx": -1,
+      "dy": -1,
+      "name": "px_m1_m1",
+      "offset": -65
+    },
+    {
+      "dx": 0,
+      "dy": -1,
+      "name": "px_m1_p0",
+      "offset": -64
+    },
+    {
+      "dx": 1,
+      "dy": -1,
+      "name": "px_m1_p1",
+      "offset": -63
+    },
+    {
+      "dx": -1,
+      "dy": 0,
+      "name": "px_p0_m1",
+      "offset": -1
+    },
+    {
+      "dx": 1,
+      "dy": 0,
+      "name": "px_p0_p1",
+      "offset": 1
+    },
+    {
+      "dx": -1,
+      "dy": 1,
+      "name": "px_p1_m1",
+      "offset": 63
+    },
+    {
+      "dx": 0,
+      "dy": 1,
+      "name": "px_p1_p0",
+      "offset": 64
+    },
+    {
+      "dx": 1,
+      "dy": 1,
+      "name": "px_p1_p1",
+      "offset": 65
+    }
+  ],
+  "ir_instructions_total": 69,
+  "kernel": "sobel",
+  "row_width": 64,
+  "software": 34
+}

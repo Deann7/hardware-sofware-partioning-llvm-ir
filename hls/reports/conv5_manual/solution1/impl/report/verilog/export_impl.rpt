@@ -1,0 +1,213 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Tue Oct 27 09:52:30 +0700 2026
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         conv5_manual
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z020-clg484-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  10 ns
+    * C-Synthesis target clock:    10 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              427
+FF:               380
+DSP:              3
+BRAM:             0
+URAM:             0
+SRL:              0
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 10.000      |
+| Post-Synthesis | 6.594       |
+| Post-Route     | 6.513       |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++--------------------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name                                       | LUT | FF  | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++--------------------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst                                       | 427 | 380 | 3   |      |      |     |        |      |         |          |        |
+|   (inst)                                   | 36  | 116 |     |      |      |     |        |      |         |          |        |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 31  |     | 1   |      |      |     |        |      |         |          |        |
+|   control_s_axi_U                          | 317 | 264 |     |      |      |     |        |      |         |          |        |
+|   mul_18s_20ns_38_1_1_U2                   | 43  |     | 1   |      |      |     |        |      |         |          |        |
+|   mul_8ns_7ns_14_1_1_U1                    |     |     | 1   |      |      |     |        |      |         |          |        |
++--------------------------------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 0.80%  | OK     |
+| FD                                                        | 50%       | 0.36%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.00%  | OK     |
+| MUXF7                                                     | 15%       | 0.11%  | OK     |
+| DSP                                                       | 80%       | 1.36%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.00%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 1.36%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 998       | 12     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 2.12   | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+-------------------------------------------+------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                            | ENDPOINT PIN                             | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                           |                                          |              |            |                |          DELAY |        DELAY |
++-------+-------+-------------------------------------------+------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 3.487 | add_ln20_2_reg_886_pp0_iter2_reg_reg[1]/C | mul_18s_20ns_38_1_1_U2/tmp_product/B[17] |            8 |          2 |          5.800 |          3.028 |        2.772 |
+| Path2 | 3.556 | control_s_axi_U/int_win_reg[26]/C         | add_ln17_6_reg_865_reg[9]/D              |            9 |          4 |          6.422 |          3.054 |        3.368 |
+| Path3 | 3.615 | add_ln20_2_reg_886_pp0_iter2_reg_reg[1]/C | mul_18s_20ns_38_1_1_U2/tmp_product/B[13] |            7 |          2 |          5.672 |          2.900 |        2.772 |
+| Path4 | 3.651 | control_s_axi_U/int_win_reg[26]/C         | add_ln17_6_reg_865_reg[10]/D             |            9 |          4 |          6.327 |          2.959 |        3.368 |
+| Path5 | 3.667 | control_s_axi_U/int_win_reg[26]/C         | add_ln17_6_reg_865_reg[8]/D              |            9 |          4 |          6.311 |          2.943 |        3.368 |
++-------+-------+-------------------------------------------+------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +---------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path1 Cells                                                                                                               | Primitive Type       |
+    +---------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | add_ln20_2_reg_886_pp0_iter2_reg_reg[1]                                                                                   | FLOP_LATCH.flop.FDRE |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_38       | LUT.others.LUT2      |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_27       | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_26       | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_20       | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_5        | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_6        | LUT.others.LUT2      |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_1        | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_reg_906_reg[0]_i_1 | CARRY.others.CARRY4  |
+    | mul_18s_20ns_38_1_1_U2/tmp_product                                                                                        | MULT.dsp.DSP48E1     |
+    +---------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +-------------------------------------------------+----------------------+
+    | Path2 Cells                                     | Primitive Type       |
+    +-------------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]                 | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_23      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_26      | LUT.others.LUT4      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_14  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_10 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_12      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_4       | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_8       | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_1   | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_1  | CARRY.others.CARRY4  |
+    | add_ln17_6_reg_865_reg[9]                       | FLOP_LATCH.flop.FDRE |
+    +-------------------------------------------------+----------------------+
+
+    +---------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path3 Cells                                                                                                         | Primitive Type       |
+    +---------------------------------------------------------------------------------------------------------------------+----------------------+
+    | add_ln20_2_reg_886_pp0_iter2_reg_reg[1]                                                                             | FLOP_LATCH.flop.FDRE |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_38 | LUT.others.LUT2      |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_27 | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_26 | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_20 | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_10 | LUT.others.LUT2      |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_2  | CARRY.others.CARRY4  |
+    | ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3/conv5_win_ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_DSP48_0_U/tmp_product_i_1  | CARRY.others.CARRY4  |
+    | mul_18s_20ns_38_1_1_U2/tmp_product                                                                                  | MULT.dsp.DSP48E1     |
+    +---------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +-------------------------------------------------+----------------------+
+    | Path4 Cells                                     | Primitive Type       |
+    +-------------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]                 | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_23      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_26      | LUT.others.LUT4      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_14  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_10 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_12      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_4       | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_8       | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_1   | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_1  | CARRY.others.CARRY4  |
+    | add_ln17_6_reg_865_reg[10]                      | FLOP_LATCH.flop.FDRE |
+    +-------------------------------------------------+----------------------+
+
+    +-------------------------------------------------+----------------------+
+    | Path5 Cells                                     | Primitive Type       |
+    +-------------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]                 | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_23      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_26      | LUT.others.LUT4      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_14  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_10 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_12      | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_4       | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln17_6_reg_865[7]_i_8       | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[7]_i_1   | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln17_6_reg_865_reg[10]_i_1  | CARRY.others.CARRY4  |
+    | add_ln17_6_reg_865_reg[8]                       | FLOP_LATCH.flop.FDRE |
+    +-------------------------------------------------+----------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+-------------------------------------------------------------------+
+| Report Type              | Report Location                                                   |
++--------------------------+-------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/conv5_win_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/conv5_win_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/conv5_win_status_routed.rpt                   |
+| timing                   | impl/verilog/report/conv5_win_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/conv5_win_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/conv5_win_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/conv5_win_utilization_hierarchical_routed.rpt |
++--------------------------+-------------------------------------------------------------------+
+
+

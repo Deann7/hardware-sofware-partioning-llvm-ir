@@ -1,0 +1,207 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Tue Oct 27 08:37:12 +0700 2026
+    * Version:         2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:         gauss_manual
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z020-clg484-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  10 ns
+    * C-Synthesis target clock:    10 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              155
+FF:               167
+DSP:              0
+BRAM:             0
+URAM:             0
+SRL:              0
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 10.000      |
+| Post-Synthesis | 5.335       |
+| Post-Route     | 5.571       |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++-------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| Name              | LUT | FF  | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
++-------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+| inst              | 155 | 167 |     |      |      |     |        |      |         |          |        |
+|   (inst)          |     | 31  |     |      |      |     |        |      |         |          |        |
+|   control_s_axi_U | 155 | 136 |     |      |      |     |        |      |         |          |        |
++-------------------+-----+-----+-----+------+------+-----+--------+------+---------+----------+--------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 0.29%  | OK     |
+| FD                                                        | 50%       | 0.16%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.00%  | OK     |
+| MUXF7                                                     | 15%       | 0.00%  | OK     |
+| DSP                                                       | 80%       | 0.00%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 0.00%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 0.00%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 998       | 8      | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 2.36   | OK     |
+| Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+-----------------------------------+----------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                    | ENDPOINT PIN               | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                   |                            |              |            |                |          DELAY |        DELAY |
++-------+-------+-----------------------------------+----------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 4.429 | control_s_axi_U/int_win_reg[26]/C | add_ln13_reg_314_reg[11]/D |            8 |          5 |          5.337 |          2.719 |        2.618 |
+| Path2 | 4.482 | control_s_axi_U/int_win_reg[26]/C | add_ln13_reg_314_reg[9]/D  |            8 |          5 |          5.543 |          2.925 |        2.618 |
+| Path3 | 4.566 | control_s_axi_U/int_win_reg[26]/C | add_ln13_reg_314_reg[10]/D |            8 |          5 |          5.459 |          2.841 |        2.618 |
+| Path4 | 4.586 | control_s_axi_U/int_win_reg[26]/C | add_ln13_reg_314_reg[8]/D  |            8 |          5 |          5.439 |          2.821 |        2.618 |
+| Path5 | 4.695 | control_s_axi_U/int_win_reg[26]/C | add_ln13_reg_314_reg[7]/D  |            7 |          5 |          5.330 |          2.712 |        2.618 |
++-------+-------+-----------------------------------+----------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +----------------------------------------------+----------------------+
+    | Path1 Cells                                  | Primitive Type       |
+    +----------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]              | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_14     | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_7      | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_10     | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_3 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_5      | LUT.others.LUT2      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_1  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_1 | CARRY.others.CARRY4  |
+    | add_ln13_reg_314_reg[11]                     | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------+----------------------+
+
+    +----------------------------------------------+----------------------+
+    | Path2 Cells                                  | Primitive Type       |
+    +----------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]              | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_14     | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_7      | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_10     | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_3 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_5      | LUT.others.LUT2      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_1  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_1 | CARRY.others.CARRY4  |
+    | add_ln13_reg_314_reg[9]                      | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------+----------------------+
+
+    +----------------------------------------------+----------------------+
+    | Path3 Cells                                  | Primitive Type       |
+    +----------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]              | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_14     | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_7      | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_10     | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_3 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_5      | LUT.others.LUT2      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_1  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_1 | CARRY.others.CARRY4  |
+    | add_ln13_reg_314_reg[10]                     | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------+----------------------+
+
+    +----------------------------------------------+----------------------+
+    | Path4 Cells                                  | Primitive Type       |
+    +----------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]              | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_14     | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_7      | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_10     | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_3 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_5      | LUT.others.LUT2      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_1  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_1 | CARRY.others.CARRY4  |
+    | add_ln13_reg_314_reg[8]                      | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------+----------------------+
+
+    +----------------------------------------------+----------------------+
+    | Path5 Cells                                  | Primitive Type       |
+    +----------------------------------------------+----------------------+
+    | control_s_axi_U/int_win_reg[26]              | FLOP_LATCH.flop.FDRE |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_14     | LUT.others.LUT3      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_7      | LUT.others.LUT5      |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_10     | LUT.others.LUT6      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314_reg[11]_i_3 | CARRY.others.CARRY4  |
+    | control_s_axi_U/add_ln13_reg_314[7]_i_5      | LUT.others.LUT2      |
+    | control_s_axi_U/add_ln13_reg_314_reg[7]_i_1  | CARRY.others.CARRY4  |
+    | add_ln13_reg_314_reg[7]                      | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------+----------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+-------------------------------------------------------------------+
+| Report Type              | Report Location                                                   |
++--------------------------+-------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/gauss_win_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/gauss_win_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/gauss_win_status_routed.rpt                   |
+| timing                   | impl/verilog/report/gauss_win_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/gauss_win_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/gauss_win_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/gauss_win_utilization_hierarchical_routed.rpt |
++--------------------------+-------------------------------------------------------------------+
+
+

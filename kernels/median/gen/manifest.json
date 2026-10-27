@@ -1,0 +1,69 @@
+{
+  "boundary": 9,
+  "default_value": 0,
+  "function": "_Z13median_filterPA64_hS0_",
+  "hardware": 52,
+  "hardware_opcodes": {
+    "call": 52
+  },
+  "inputs": [
+    {
+      "dx": -1,
+      "dy": -1,
+      "name": "px_m1_m1",
+      "offset": -65
+    },
+    {
+      "dx": 0,
+      "dy": -1,
+      "name": "px_m1_p0",
+      "offset": -64
+    },
+    {
+      "dx": 1,
+      "dy": -1,
+      "name": "px_m1_p1",
+      "offset": -63
+    },
+    {
+      "dx": -1,
+      "dy": 0,
+      "name": "px_p0_m1",
+      "offset": -1
+    },
+    {
+      "dx": 0,
+      "dy": 0,
+      "name": "px_p0_p0",
+      "offset": 0
+    },
+    {
+      "dx": 1,
+      "dy": 0,
+      "name": "px_p0_p1",
+      "offset": 1
+    },
+    {
+      "dx": -1,
+      "dy": 1,
+      "name": "px_p1_m1",
+      "offset": 63
+    },
+    {
+      "dx": 0,
+      "dy": 1,
+      "name": "px_p1_p0",
+      "offset": 64
+    },
+    {
+      "dx": 1,
+      "dy": 1,
+      "name": "px_p1_p1",
+      "offset": 65
+    }
+  ],
+  "ir_instructions_total": 98,
+  "kernel": "median",
+  "row_width": 64,
+  "software": 37
+}

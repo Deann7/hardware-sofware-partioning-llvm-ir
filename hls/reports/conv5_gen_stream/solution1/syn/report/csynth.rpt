@@ -1,0 +1,160 @@
+
+
+================================================================
+== Synthesis Summary Report of 'conv5_stream'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 10:32:29 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        conv5_gen_stream
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+--------+-----------+-----------+-----+
+    |     Modules    |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |        |           |           |     |
+    |     & Loops    |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |   DSP  |     FF    |    LUT    | URAM|
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+--------+-----------+-----------+-----+
+    |+ conv5_stream  |  Timing|  -0.93|     4365|  4.365e+04|         -|     4366|     -|        no|     -|  5 (2%)|  1218 (1%)|  1199 (2%)|    -|
+    | o ROW_COL      |       -|   7.30|     4363|  4.363e+04|         9|        1|  4356|       yes|     -|       -|          -|          -|    -|
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+--------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| in_r      | in        | both          | 8     | 1     | 1     | 1      | 1     | 1      |
+| out_r     | out       | both          | 8     | 1     | 1     | 1      | 1     | 1      |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------------------------------------------+
+| Argument | Direction | Datatype                                               |
++----------+-----------+--------------------------------------------------------+
+| in       | in        | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
+| out      | out       | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
++----------+-----------+--------------------------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+
+| Argument | HW Interface | HW Type   |
++----------+--------------+-----------+
+| in       | in_r         | interface |
+| out      | out_r        | interface |
++----------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| Name                                       | DSP | Pragma | Variable    | Op  | Impl      | Latency |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| + conv5_stream                             | 5   |        |             |     |           |         |
+|   add_ln23_fu_432_p2                       |     |        | add_ln23    | add | fabric    | 0       |
+|   add_ln23_1_fu_458_p2                     |     |        | add_ln23_1  | add | fabric    | 0       |
+|   y_fu_496_p2                              |     |        | y           | add | fabric    | 0       |
+|   add_ln44_fu_572_p2                       |     |        | add_ln44    | add | fabric    | 0       |
+|   mul_8ns_7ns_14_1_1_U2                    |     |        | t15         | mul | auto      | 0       |
+|   tmp3_fu_911_p2                           |     |        | tmp3        | add | fabric    | 0       |
+|   tmp4_fu_707_p2                           |     |        | tmp4        | add | fabric    | 0       |
+|   tmp2_fu_924_p2                           |     |        | tmp2        | add | fabric    | 0       |
+|   tmp6_fu_934_p2                           |     |        | tmp6        | add | fabric    | 0       |
+|   tmp7_fu_713_p2                           |     |        | tmp7        | add | fabric    | 0       |
+|   tmp5_fu_947_p2                           |     |        | tmp5        | add | fabric    | 0       |
+|   tmp443_fu_957_p2                         |     |        | tmp443      | add | fabric    | 0       |
+|   tmp8_fu_719_p2                           |     |        | tmp8        | add | fabric    | 0       |
+|   tmp9_fu_729_p2                           |     |        | tmp9        | add | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | tmp48       | add | dsp_slice | 3       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | tmp49       | mul | dsp_slice | 3       |
+|   tmp10_fu_755_p2                          |     |        | tmp10       | add | fabric    | 0       |
+|   tmp11_fu_765_p2                          |     |        | tmp11       | add | fabric    | 0       |
+|   tmp521_fu_775_p2                         |     |        | tmp521      | add | fabric    | 0       |
+|   tmp13_fu_974_p2                          |     |        | tmp13       | add | fabric    | 0       |
+|   tmp14_fu_781_p2                          |     |        | tmp14       | add | fabric    | 0       |
+|   tmp56_fu_987_p2                          |     |        | tmp56       | add | fabric    | 0       |
+|   tmp57_fu_1009_p2                         |     |        | tmp57       | sub | fabric    | 0       |
+|   ama_addmuladd_9ns_9ns_5ns_14ns_16_4_1_U3 | 1   |        | add_ln104   | add | dsp_slice | 3       |
+|   add_ln104_1_fu_1019_p2                   |     |        | add_ln104_1 | add | fabric    | 0       |
+|   add_ln104_2_fu_1129_p2                   |     |        | add_ln104_2 | add | fabric    | 0       |
+|   add_ln104_4_fu_1025_p2                   |     |        | add_ln104_4 | add | fabric    | 0       |
+|   add_ln104_5_fu_1035_p2                   |     |        | add_ln104_5 | add | fabric    | 0       |
+|   t69_fu_1142_p2                           |     |        | t69         | add | fabric    | 0       |
+|   mul_32ns_34ns_49_2_1_U1                  | 4   |        | mul_ln105   | mul | auto      | 1       |
+|   add_ln25_fu_610_p2                       |     |        | add_ln25    | add | fabric    | 0       |
++--------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage         | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |               |           |      |      |        |          |      |         | Banks            |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| + conv5_stream    |               |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface     | s_axilite |      |      |        |          |      |         |                  |
+|   lb_U            | ram_s2p array |           |      |      |        | lb       | auto | 1       | 8, 64, 1         |
+|   lb_1_U          | ram_s2p array |           |      |      |        | lb_1     | auto | 1       | 8, 64, 1         |
+|   lb_2_U          | ram_s2p array |           |      |      |        | lb_2     | auto | 1       | 8, 64, 1         |
+|   lb_3_U          | ram_s2p array |           |      |      |        | lb_3     | auto | 1       | 8, 64, 1         |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+------------------------------------------------------------+
+| Type            | Options                              | Location                                                   |
++-----------------+--------------------------------------+------------------------------------------------------------+
+| interface       | axis port=in                         | ../../common/stencil_stream.inc:14 in conv5_stream, in     |
+| interface       | axis port=out                        | ../../common/stencil_stream.inc:15 in conv5_stream, out    |
+| interface       | s_axilite port=return bundle=control | ../../common/stencil_stream.inc:16 in conv5_stream, return |
+| array_partition | variable=lb complete dim=1           | ../../common/stencil_stream.inc:18 in conv5_stream, lb     |
+| array_partition | variable=win complete dim=0          | ../../common/stencil_stream.inc:20 in conv5_stream, win    |
+| pipeline        | II=1                                 | ../../common/stencil_stream.inc:26 in conv5_stream         |
+| array_partition | variable=colv complete               | ../../common/stencil_stream.inc:28 in conv5_stream, colv   |
+| inline          |                                      | ../../kernels/conv5/gen/stream.cpp:9 in kop                |
++-----------------+--------------------------------------+------------------------------------------------------------+
+
+

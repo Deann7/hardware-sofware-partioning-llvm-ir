@@ -1,0 +1,24 @@
+
+
+Implementation tool: Xilinx Vivado v.2023.2
+Project:             conv5_gen
+Solution:            solution1
+Device target:       xc7z020-clg484-1
+Report date:         Tue Oct 27 09:22:25 +0700 2026
+
+#=== Post-Implementation Resource usage ===
+SLICE:          146
+LUT:            428
+FF:             384
+DSP:              6
+BRAM:             0
+URAM:             0
+LATCH:            0
+SRL:              0
+CLB:              0
+
+#=== Final timing ===
+CP required:                     10.000
+CP achieved post-synthesis:      6.594
+CP achieved post-implementation: 7.096
+Timing met

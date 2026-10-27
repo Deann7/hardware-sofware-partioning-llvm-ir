@@ -1,0 +1,138 @@
+
+
+================================================================
+== Synthesis Summary Report of 'gauss_stream'
+================================================================
++ General Information: 
+    * Date:           Tue Oct 27 10:13:56 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        gauss_gen_stream
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+----------+-----+
+    |     Modules    |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |    |           |          |     |
+    |     & Loops    |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT   | URAM|
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+----------+-----+
+    |+ gauss_stream  |  Timing|  -0.98|     4230|  4.230e+04|         -|     4231|     -|        no|     -|   -|  706 (~0%)|  794 (1%)|    -|
+    | o ROW_COL      |       -|   7.30|     4228|  4.228e+04|         5|        1|  4225|       yes|     -|   -|          -|         -|    -|
+    +----------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| in_r      | in        | both          | 8     | 1     | 1     | 1      | 1     | 1      |
+| out_r     | out       | both          | 8     | 1     | 1     | 1      | 1     | 1      |
++-----------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------------------------------------------+
+| Argument | Direction | Datatype                                               |
++----------+-----------+--------------------------------------------------------+
+| in       | in        | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
+| out      | out       | stream<hls::axis<ap_uint<8>, 0, 0, 0, '8', false>, 0>& |
++----------+-----------+--------------------------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+
+| Argument | HW Interface | HW Type   |
++----------+--------------+-----------+
+| in       | in_r         | interface |
+| out      | out_r        | interface |
++----------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------+-----+--------+------------+-----+--------+---------+
+| Name                   | DSP | Pragma | Variable   | Op  | Impl   | Latency |
++------------------------+-----+--------+------------+-----+--------+---------+
+| + gauss_stream         | 0   |        |            |     |        |         |
+|   add_ln23_fu_286_p2   |     |        | add_ln23   | add | fabric | 0       |
+|   add_ln23_1_fu_312_p2 |     |        | add_ln23_1 | add | fabric | 0       |
+|   y_fu_340_p2          |     |        | y          | add | fabric | 0       |
+|   add_ln44_fu_388_p2   |     |        | add_ln44   | add | fabric | 0       |
+|   tmp2_fu_487_p2       |     |        | tmp2       | add | fabric | 0       |
+|   tmp3_fu_497_p2       |     |        | tmp3       | add | fabric | 0       |
+|   tmp121_fu_507_p2     |     |        | tmp121     | add | fabric | 0       |
+|   add_ln40_fu_525_p2   |     |        | add_ln40   | add | fabric | 0       |
+|   add_ln40_2_fu_531_p2 |     |        | add_ln40_2 | add | fabric | 0       |
+|   add_ln40_3_fu_541_p2 |     |        | add_ln40_3 | add | fabric | 0       |
+|   add_ln25_fu_416_p2   |     |        | add_ln25   | add | fabric | 0       |
++------------------------+-----+--------+------------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage         | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |               |           |      |      |        |          |      |         | Banks            |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+| + gauss_stream    |               |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface     | s_axilite |      |      |        |          |      |         |                  |
+|   lb_U            | ram_s2p array |           |      |      |        | lb       | auto | 1       | 8, 64, 1         |
+|   lb_1_U          | ram_s2p array |           |      |      |        | lb_1     | auto | 1       | 8, 64, 1         |
++-------------------+---------------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+------------------------------------------------------------+
+| Type            | Options                              | Location                                                   |
++-----------------+--------------------------------------+------------------------------------------------------------+
+| interface       | axis port=in                         | ../../common/stencil_stream.inc:14 in gauss_stream, in     |
+| interface       | axis port=out                        | ../../common/stencil_stream.inc:15 in gauss_stream, out    |
+| interface       | s_axilite port=return bundle=control | ../../common/stencil_stream.inc:16 in gauss_stream, return |
+| array_partition | variable=lb complete dim=1           | ../../common/stencil_stream.inc:18 in gauss_stream, lb     |
+| array_partition | variable=win complete dim=0          | ../../common/stencil_stream.inc:20 in gauss_stream, win    |
+| pipeline        | II=1                                 | ../../common/stencil_stream.inc:26 in gauss_stream         |
+| array_partition | variable=colv complete               | ../../common/stencil_stream.inc:28 in gauss_stream, colv   |
+| inline          |                                      | ../../kernels/gauss/gen/stream.cpp:9 in kop                |
++-----------------+--------------------------------------+------------------------------------------------------------+
+
+

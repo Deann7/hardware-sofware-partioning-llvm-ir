@@ -1,0 +1,136 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sobel_win'
+================================================================
++ General Information: 
+    * Date:           Sun Oct 25 22:33:28 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        sobel_manual
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |   Modules   | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |    |           |           |     |
+    |   & Loops   | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT    | URAM|
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |+ sobel_win  |     -|  1.21|        2|  20.000|         -|        1|     -|       yes|     -|   -|  199 (~0%)|  419 (~0%)|    -|
+    +-------------+------+------+---------+--------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register    | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL        | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER        | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER      | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR      | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | win_1       | 0x10   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_2       | 0x14   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | win_3       | 0x18   | 32    | W      | Data signal of win               |                                                                      |
+| s_axi_control | result      | 0x20   | 32    | R      | Data signal of result            |                                                                      |
+| s_axi_control | result_ctrl | 0x24   | 32    | R      | Control signal of result         | 0=result_ap_vld                                                      |
++---------------+-------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------+
+| Argument | Direction | Datatype       |
++----------+-----------+----------------+
+| win      | in        | ap_uint<72>    |
+| result   | out       | unsigned char* |
++----------+-----------+----------------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+---------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                               |
++----------+---------------+----------+---------------------------------------+
+| win      | s_axi_control | register | name=win_1 offset=0x10 range=32       |
+| win      | s_axi_control | register | name=win_2 offset=0x14 range=32       |
+| win      | s_axi_control | register | name=win_3 offset=0x18 range=32       |
+| result   | s_axi_control | register | name=result offset=0x20 range=32      |
+| result   | s_axi_control | register | name=result_ctrl offset=0x24 range=32 |
++----------+---------------+----------+---------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------+-----+--------+-----------+-----+--------+---------+
+| Name                  | DSP | Pragma | Variable  | Op  | Impl   | Latency |
++-----------------------+-----+--------+-----------+-----+--------+---------+
+| + sobel_win           | 0   |        |           |     |        |         |
+|   tmp_fu_193_p2       |     |        | tmp       | sub | fabric | 0       |
+|   gx_3_fu_199_p2      |     |        | gx_3      | sub | fabric | 0       |
+|   gx_4_fu_209_p2      |     |        | gx_4      | sub | fabric | 0       |
+|   tmp3_fu_219_p2      |     |        | tmp3      | sub | fabric | 0       |
+|   add_ln15_fu_225_p2  |     |        | add_ln15  | add | fabric | 0       |
+|   gy_2_fu_235_p2      |     |        | gy_2      | sub | fabric | 0       |
+|   sub_ln18_fu_312_p2  |     |        | sub_ln18  | sub | fabric | 0       |
+|   sub_ln19_fu_334_p2  |     |        | sub_ln19  | sub | fabric | 0       |
+|   add_ln20_fu_354_p2  |     |        | add_ln20  | add | fabric | 0       |
+|   magnitude_fu_358_p2 |     |        | magnitude | add | fabric | 0       |
++-----------------------+-----+--------+-----------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + sobel_win       |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+-------------------------------------------------------+
+| Type            | Options                              | Location                                              |
++-----------------+--------------------------------------+-------------------------------------------------------+
+| interface       | s_axilite port=return bundle=control | ../../kernels/sobel/manual.cpp:7 in sobel_win, return |
+| interface       | s_axilite port=win bundle=control    | ../../kernels/sobel/manual.cpp:8 in sobel_win, win    |
+| interface       | s_axilite port=result bundle=control | ../../kernels/sobel/manual.cpp:9 in sobel_win, result |
+| pipeline        | II=1                                 | ../../kernels/sobel/manual.cpp:10 in sobel_win        |
+| array_partition | variable=w complete dim=0            | ../../kernels/sobel/manual.cpp:12 in sobel_win, w     |
+| unroll          |                                      | ../../kernels/sobel/manual.cpp:14 in sobel_win        |
+| unroll          |                                      | ../../kernels/sobel/manual.cpp:16 in sobel_win        |
+| inline          |                                      | ../../kernels/sobel/op.h:6 in kop                     |
+| unroll          |                                      | ../../kernels/sobel/op.h:11 in kop                    |
+| unroll          |                                      | ../../kernels/sobel/op.h:13 in kop                    |
++-----------------+--------------------------------------+-------------------------------------------------------+
+
+
